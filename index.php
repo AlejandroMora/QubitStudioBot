@@ -23,7 +23,5 @@
     <?php 
         print_r($_GET["hub_challenge"]);
     ?>
-
-    <div class="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
 </body>
 </html>
