@@ -19,7 +19,7 @@
             'header' => "Content-Type: application/json\n"
         )
     );
-    $context = stream_context_create($headers);
+    /*$context = stream_context_create($headers);
     file_get_contents("$url", false, $context);
-    
+    */
 ?>
