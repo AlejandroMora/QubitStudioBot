@@ -1,4 +1,6 @@
 <?php 
+    file_put_contents("fb.txt", file_get_contents("php://input"));
+
     $configJSON = json_decode(file_get_contents('./config.json'),true);
     $token = $configJSON['appAccessToken'];
     $url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$token;
