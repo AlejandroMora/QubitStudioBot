@@ -1,14 +1,11 @@
 <?php 
-    echo "Hola";
     $configJSON = json_decode(file_get_contents('./config.json'),true);
-    print_r($configJSON);
     $token = $configJSON['appAccessToken'];
-    echo "mundo: $token";
     $url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$token;
 
     $input = json_decode(file_get_contents('php://input'), true);
-    $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
-    $message = $input['entry'][0]['messaging'][0]['message']['text']; 
+    $sender = $input->entry[0]->messaging[0]->sender->id;
+    $message = $input->entry[0]->messaging[0]->message->text; 
 
     $response = array(
         'recipient' => array('id' => "$sender"),
@@ -23,5 +20,5 @@
     );
 
     $context = stream_context_create($headers);
-    file_get_contents($url, false, $context);
+    file_get_contents("$url", false, $context);
 ?>
