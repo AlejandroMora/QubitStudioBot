@@ -1,7 +1,7 @@
 <?php 
     echo "Hola";
-    $configJSON = json_decode(file_get_contents('./config.json', FILE_USE_INCLUDE_PATH));
-    echo " $configJSON";
+    $configJSON = json_decode(file_get_contents('./config.json'),true);
+    print_r($configJSON);
     $token = $configJSON['appAccessToken'];
     echo "mundo: $token";
     $url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$token;
