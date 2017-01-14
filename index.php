@@ -12,20 +12,16 @@
     $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
     $message = $input['entry'][0]['messaging'][0]['message']['text'];
 
-
     if(!empty($message)) {
         $answer = " world :)";
-        if($message != "hello") {
-            $answer = "Try again";
-        }
         $response = array(
-            'recipient' => array('id' => $sender),
-            'message' => array('text' => $answer)
+            'recipient' => array('id' => "$sender"),
+            'message' => array('text' => "$answer")
         );
-        $ch = curl_init($url);
+        $ch = curl_init("$url");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_exec($ch);
     }
 ?>
