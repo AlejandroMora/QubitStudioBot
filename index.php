@@ -1,10 +1,14 @@
 <?php
+    if (isset($_REQUEST['hub_verify_token'])) {
+        print_r($_REQUEST['hub_challenge']);
+        exit;
+    }
+
     $configJSON = json_decode(file_get_contents('./config.json'),true);
     $token = $configJSON['appAccessToken'];
     $url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$token;
 
     $input = json_decode(file_get_contents('php://input'), true);
-    //print_r($_REQUEST['hub_challenge']);
     $sender = $input['entry'][0]['messaging'][0]['sender']['id'];
     $message = $input['entry'][0]['messaging'][0]['message']['text'];
 
@@ -23,6 +27,5 @@
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
         curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
         curl_exec($ch);
-        curl_close($ch);
     }
 ?>
