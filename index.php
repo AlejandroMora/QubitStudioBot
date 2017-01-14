@@ -1,4 +1,5 @@
-<?php 
+<?php
+
     file_put_contents("fb.txt", file_get_contents("php://input"));
 
     $configJSON = json_decode(file_get_contents('./config.json'),true);
@@ -6,6 +7,7 @@
     $url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$token;
 
     $input = json_decode(file_get_contents('php://input'), true);
+    print_r($_REQUEST['hub_challenge']);
     $sender = $input->entry[0]->messaging[0]->sender->id;
     $message = $input->entry[0]->messaging[0]->message->text; 
 
